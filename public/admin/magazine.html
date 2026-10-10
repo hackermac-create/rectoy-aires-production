@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Magazine — Administration | RECTOY-AIRES</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.mag-admin{max-width:1000px;margin:0 auto;padding:30px 20px}
+.mag-admin-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.mag-admin-top a{color:#0b6bcb;font-weight:700;text-decoration:none}
+.mag-row{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;border-bottom:1px solid #edf0f4;padding:14px 0}
+.mag-row:last-child{border-bottom:0}
+.check{flex-direction:row!important;align-items:center}
+.check input{width:auto}
+.share-options{display:flex;gap:18px;flex-wrap:wrap}.share-options label{display:flex;align-items:center;gap:8px;font-weight:600}.share-options input{width:auto}.social-share small{color:#8793a3}
+#notice{padding:30px;text-align:center}
+@media(max-width:700px){.mag-row{grid-template-columns:60px 1fr}.mag-row .row-actions{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<nav id="adminbar"></nav>
+<div class="mag-admin">
+  <div class="mag-admin-top">
+    <h1>📖 RECTOY MAGAZINE — administration</h1>
+  </div>
+
+  <div class="panel" id="notice" hidden>
+    <p>Vous devez d'abord vous connecter.</p><br>
+    <a class="primary-btn" href="index.html" style="text-decoration:none;display:inline-block">Se connecter</a>
+  </div>
+
+  <div id="app" hidden>
+    <div class="panel" style="margin-bottom:22px">
+      <div class="panel-header"><div><h2>Articles</h2><p>Portraits, reportages, entreprises, investisseurs, produits, activités, publicités.</p></div>
+        <button class="primary-btn" id="newBtn" type="button">+ Nouvel article</button></div>
+      <div id="list"></div>
+    </div>
+
+    <div class="panel" id="formPanel" hidden>
+      <div class="panel-header"><h2 id="formTitle">Nouvel article</h2></div>
+      <form id="form">
+        <input type="hidden" id="editId">
+        <div class="form-grid">
+          <div class="form-group full"><label for="title">Titre *</label><input id="title" name="title" maxlength="180" required></div>
+          <div class="form-group"><label for="category">Rubrique *</label>
+            <select id="category" name="category">
+              <option value="portrait">Portrait (entrepreneur, acteur)</option>
+              <option value="reportage">Reportage</option>
+              <option value="entreprise">Entreprise &amp; PME</option>
+              <option value="investisseur">Investisseur</option>
+              <option value="produit">Produit</option>
+              <option value="activite">Activité</option>
+              <option value="publicite">Publicité</option>
+            </select></div>
+          <div class="form-group"><label for="subject">Personne ou organisation mise en avant</label><input id="subject" name="subject" maxlength="150"></div>
+          <div class="form-group"><label for="author">Auteur (direction de la communication)</label><input id="author" name="author" maxlength="100"></div>
+          <div class="form-group"><label for="publishedAt">Date de publication</label><input type="date" id="publishedAt" name="publishedAt"></div>
+          <div class="form-group"><label for="status">Statut</label>
+            <select id="status" name="status"><option value="published">Publié</option><option value="draft">Brouillon</option></select></div>
+          <div class="form-group check"><label><input type="checkbox" id="featured"> ⭐ Mettre « À la une »</label></div>
+          <div class="form-group full"><label for="image">Image de couverture</label><input type="file" id="image" accept="image/jpeg,image/png,image/webp"><small>JPG, PNG ou WEBP — 5 Mo maximum. En modification, laissez vide pour garder l'image.</small></div>
+          <div class="form-group full"><label for="summary">Résumé (chapeau, 400 caractères max) *</label><textarea id="summary" name="summary" rows="3" maxlength="400" required></textarea></div>
+          <div class="form-group full"><label for="content">Contenu *</label><textarea id="content" name="content" rows="14" required></textarea>
+            <small>Séparez les paragraphes par une ligne vide. Pour un intertitre, commencez la ligne par « ## ».</small></div>
+          <div class="form-group full social-share"><label>Publier aussi sur nos pages</label>
+  <div class="share-options">
+    <label><input type="checkbox" id="shareFacebook" > <span>Facebook</span></label>
+    <label><input type="checkbox" id="shareInstagram" > <span>Instagram</span></label>
+  </div>
+  <small id="shareHint">L'envoi se fait à l'enregistrement, uniquement si le statut est « Publié ». Instagram exige une image.</small></div>
+
+        </div>
+        <div class="form-actions"><button class="secondary-btn" id="cancel" type="button">Annuler</button><button class="primary-btn" type="submit">Enregistrer</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="magazine-admin.js"></script>
+<script src="adminbar.js"></script>
+</body>
+</html>

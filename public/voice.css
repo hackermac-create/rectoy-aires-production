@@ -1,0 +1,65 @@
+/* =========================================================
+   RECTOY-AIRES — VOIX : visite guidée, proposition de visite, mise en valeur de la section lue
+========================================================= */
+
+/* Section en cours de lecture pendant la visite */
+.ra-tour-focus { outline: 3px solid rgba(0,168,255,.75); outline-offset: -6px; transition: outline-color .3s ease; }
+
+/* Barre de la visite guidée (bas de l'écran, centrée) */
+.ra-tour, .ra-tour-offer {
+    position: fixed; left: 50%; bottom: 18px; z-index: 9500; width: min(560px, calc(100vw - 28px));
+    transform: translateX(-50%); padding: 14px 16px 14px; border-radius: 18px;
+    color: #fff; background: rgba(7,17,31,.96); border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 24px 60px rgba(0,0,0,.5); backdrop-filter: blur(14px);
+    animation: raTourIn .3s ease both;
+}
+.ra-tour-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ra-tour-head strong, .ra-tour-offer > strong { font-size: .9rem; }
+.ra-tour-x { width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer; color: #fff; background: rgba(255,255,255,.1); font-size: .95rem; }
+.ra-tour-x:hover { background: rgba(255,255,255,.2); }
+.ra-tour-caption { margin: 10px 0 12px; max-height: 26vh; overflow: auto; font-size: .95rem; line-height: 1.6; color: rgba(255,255,255,.88); }
+.ra-tour-bar { height: 4px; border-radius: 4px; background: rgba(255,255,255,.14); overflow: hidden; }
+.ra-tour-bar span { display: block; height: 100%; width: 0; border-radius: 4px; background: linear-gradient(135deg, #12c9b0 0%, #1f7ae0 52%, #6a3df0 100%); transition: width .4s ease; }
+.ra-tour-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 12px; }
+.ra-tour button:not(.ra-tour-x), .ra-tour-offer button {
+    min-width: 46px; height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2);
+    background: transparent; color: #fff; font: inherit; font-size: 1rem; font-weight: 700; cursor: pointer;
+}
+.ra-tour button:not(.ra-tour-x):hover:not(:disabled), .ra-tour-offer button:hover { background: rgba(255,255,255,.1); }
+.ra-tour button:disabled { opacity: .35; cursor: default; }
+.ra-tour .main, .ra-tour-offer .main { border: 0; background: linear-gradient(135deg, #12c9b0 0%, #1f7ae0 52%, #6a3df0 100%); }
+.ra-tour button:focus-visible, .ra-tour-offer button:focus-visible { outline: 3px solid var(--primary-light, #45c7ff); outline-offset: 2px; }
+.ra-tour-offer p { margin: 8px 0 4px; font-size: .92rem; line-height: 1.6; color: rgba(255,255,255,.8); }
+
+/* Bouton « Visite guidée » du menu */
+.nav-tour { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.05); color: #fff;
+    font: inherit; font-size: .82rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+    transition: background .2s ease, border-color .2s ease; }
+.nav-tour:hover { background: rgba(0,168,255,.18); border-color: rgba(0,168,255,.55); }
+.nav-tour:focus-visible { outline: 2px solid var(--primary-light, #45c7ff); outline-offset: 2px; }
+@media (max-width: 1180px) { .nav-actions .nav-tour span { display: none; } .nav-actions .nav-tour { padding: 10px; } }
+@media (max-width: 960px) {
+    .nav-mobile-foot .nav-tour { justify-content: center; padding: 14px; font-size: 1rem; border-radius: 14px; }
+}
+
+/* Le bouton WhatsApp et l'assistant restent accessibles : la barre de visite passe au-dessus sur mobile */
+@media (max-width: 560px) { .ra-tour, .ra-tour-offer { bottom: 10px; } }
+
+@keyframes raTourIn { from { opacity: 0; transform: translate(-50%, 14px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (prefers-reduced-motion: reduce) { .ra-tour, .ra-tour-offer { animation: none; } .ra-tour-bar span { transition: none; } }
+
+/* Assistant : micro (dictée) */
+.ra-ai-form .ra-ai-mic { color: #0b6bcb; background: #eef6fd; border: 1px solid #cfe5f7; }
+.ra-ai-form .ra-ai-mic:hover { background: #dcedfb; filter: none; }
+.ra-ai-form .ra-ai-mic.on { color: #fff; background: #d92d20; border-color: #d92d20; animation: raMic 1.2s ease-in-out infinite; }
+@keyframes raMic { 0%, 100% { box-shadow: 0 0 0 0 rgba(217,45,32,.45); } 50% { box-shadow: 0 0 0 8px rgba(217,45,32,0); } }
+.ra-ai-head .ra-ai-speaker { font-size: .95rem; }
+@media (prefers-reduced-motion: reduce) { .ra-ai-form .ra-ai-mic.on { animation: none; } }
+
+/* Magazine : bouton « Écouter l'article » */
+.mag-listen { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 18px; padding: 10px 18px; border-radius: 999px;
+    border: 1px solid #0077b6; background: #fff; color: #0077b6; font: inherit; font-size: .9rem; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
+.mag-listen:hover, .mag-listen[aria-pressed="true"] { background: #0077b6; color: #fff; }
+.mag-listen:focus-visible { outline: 3px solid #45c7ff; outline-offset: 2px; }
+.mag-videos[data-show="0"] { display: none; }

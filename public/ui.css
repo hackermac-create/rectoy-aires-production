@@ -1,0 +1,166 @@
+/* =========================================================
+   RECTOY-AIRES — UI PROFESSIONNELLE
+   Splash screen · boutons · biographies cofondateurs
+========================================================= */
+
+/* ---------- SPLASH SCREEN ---------- */
+html.splash-active { overflow: hidden; }
+html.splash-done #splash { display: none !important; }
+
+.splash {
+    position: fixed; inset: 0; z-index: 10000;
+    background: #07111f;
+    display: grid; place-items: center;
+    opacity: 1; transition: opacity .6s ease, transform .6s ease;
+    cursor: pointer;
+}
+.splash.is-leaving { opacity: 0; transform: scale(1.03); pointer-events: none; }
+
+.splash-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; background: #07111f;
+}
+.splash.use-fallback .splash-video { display: none; }
+
+.splash-fallback {
+    display: none; position: relative; text-align: center; color: #fff;
+    padding: 24px; flex-direction: column; align-items: center; gap: 14px;
+}
+.splash.use-fallback .splash-fallback { display: flex; }
+.splash-fallback svg { width: clamp(110px, 22vw, 170px); height: auto; overflow: visible; }
+.splash-fallback .hex { fill: none; stroke: #00a8ff; stroke-width: 3; stroke-linejoin: round;
+    stroke-dasharray: 260; stroke-dashoffset: 260; animation: splash-draw 1.2s .1s ease forwards; filter: drop-shadow(0 0 8px rgba(0,168,255,.7)); }
+.splash-fallback .letter { fill: #fff; font: 700 38px Poppins, "Segoe UI", Arial, sans-serif; opacity: 0; animation: splash-fade .6s .9s ease forwards; }
+.splash-fallback strong { font: 700 clamp(1.5rem, 5vw, 2.4rem)/1.1 Poppins, "Segoe UI", Arial, sans-serif; letter-spacing: .12em; opacity: 0; animation: splash-rise .7s 1.2s ease forwards; }
+.splash-fallback strong span { color: #45c7ff; }
+.splash-fallback small { color: #45c7ff; letter-spacing: .18em; font-size: .72rem; opacity: 0; animation: splash-rise .7s 1.7s ease forwards; }
+.splash-fallback em { color: rgba(255,255,255,.8); font-size: .95rem; opacity: 0; animation: splash-rise .7s 2.1s ease forwards; }
+@keyframes splash-draw { to { stroke-dashoffset: 0; } }
+@keyframes splash-fade { to { opacity: 1; } }
+@keyframes splash-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.splash-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.08); }
+.splash-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #00a8ff, #45c7ff);
+    animation: splash-progress 5.2s linear forwards; }
+.splash.use-fallback .splash-bar span { animation-duration: 3.4s; }
+@keyframes splash-progress { to { width: 100%; } }
+
+.splash-skip {
+    position: absolute; right: 20px; bottom: 26px;
+    background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.22);
+    border-radius: 999px; padding: 10px 18px; font: 600 .82rem/1 inherit; font-family: inherit; letter-spacing: .02em;
+    backdrop-filter: blur(6px); cursor: pointer;
+    transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.splash-skip:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.4); transform: translateY(-2px); }
+.splash-skip:focus-visible { outline: 3px solid #45c7ff; outline-offset: 3px; }
+
+/* ---------- BOUTONS : INTERACTION PROFESSIONNELLE ---------- */
+.btn, .primary-btn, .secondary-btn, .project-link, .news-link, .filter-btn, .btn-bio, .ra-btn {
+    position: relative; overflow: hidden; isolation: isolate;
+    cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.btn { transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, background .22s ease, border-color .22s ease, filter .22s ease; }
+.btn:active, .btn-bio:active, .filter-btn:active, .ra-btn:active { transform: translateY(0) scale(.98); filter: brightness(.96); transition-duration: .08s; }
+
+/* reflet qui traverse le bouton principal au survol */
+.btn-primary::after, .ra-btn.primary::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+    transform: translateX(-120%); transition: transform .7s ease;
+}
+.btn-primary:hover::after, .ra-btn.primary:hover::after { transform: translateX(120%); }
+
+/* focus clavier net et accessible */
+:where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 3px solid rgba(0,168,255,.65); outline-offset: 3px; border-radius: 10px;
+}
+.btn-outline:focus-visible { outline-color: #fff; }
+
+/* effet d'onde au clic */
+.ripple { position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; background: rgba(255,255,255,.35);
+    transform: scale(0); animation: ripple .6s ease-out forwards; }
+.filter-btn .ripple, .btn-bio .ripple, .secondary-btn .ripple { background: rgba(0,119,182,.22); }
+@keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+/* états chargement / désactivé */
+button:disabled, .btn[aria-disabled="true"] { cursor: not-allowed; }
+button.is-loading { color: transparent !important; pointer-events: none; }
+button.is-loading::before {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 20px; height: 20px; margin: -10px 0 0 -10px;
+    border-radius: 50%; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; animation: ui-spin .7s linear infinite; z-index: 1;
+}
+@keyframes ui-spin { to { transform: rotate(360deg); } }
+
+/* messages de formulaire */
+.form-msg { margin-top: 12px; padding: 12px 14px; border-radius: 10px; font-size: .9rem; font-weight: 600; }
+.form-msg.ok  { background: #e8f7ee; color: #146c3c; border: 1px solid #bfe6cf; }
+.form-msg.err { background: #fdeceb; color: #a4262c; border: 1px solid #f4c7c4; }
+
+/* filtres actualités : état actif visible */
+.filter-btn[aria-pressed="true"] { box-shadow: 0 8px 20px rgba(0,168,255,.22); }
+
+/* liens sociaux pas encore renseignés */
+a.is-soon { opacity: .45; cursor: not-allowed; position: relative; }
+a.is-soon:hover { background: transparent !important; color: inherit !important; border-color: inherit !important; }
+
+/* bouton menu mobile */
+.menu-toggle { transition: transform .2s ease, background .2s ease; }
+.menu-toggle:active { transform: scale(.92); }
+
+/* ---------- BIOGRAPHIE COFONDATEURS ---------- */
+.btn-bio {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+    padding: 11px 18px; border-radius: 10px; border: 1px solid var(--primary, #00a8ff);
+    background: transparent; color: var(--primary-dark, #0077b6); font: 700 .82rem/1 inherit; font-family: inherit;
+    transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.btn-bio span { transition: transform .2s ease; }
+.btn-bio:hover { background: linear-gradient(135deg, #00a8ff, #0077b6); color: #fff; box-shadow: 0 10px 24px rgba(0,168,255,.28); transform: translateY(-2px); }
+.btn-bio:hover span { transform: translateX(4px); }
+
+.bio-overlay {
+    position: fixed; inset: 0; z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px;
+    background: rgba(4,10,18,.7); backdrop-filter: blur(6px);
+}
+.bio-overlay.open { display: flex; animation: bio-fade .25s ease; }
+@keyframes bio-fade { from { opacity: 0; } to { opacity: 1; } }
+.bio-modal {
+    position: relative; width: min(860px, 100%); max-height: min(88vh, 760px); overflow: auto;
+    background: #fff; border-radius: 22px; box-shadow: 0 40px 100px rgba(0,0,0,.45);
+    display: grid; grid-template-columns: 300px 1fr; animation: bio-rise .35s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes bio-rise { from { opacity: 0; transform: translateY(24px) scale(.98); } to { opacity: 1; transform: none; } }
+.bio-side { background: linear-gradient(160deg, #07111f, #0b2a45); color: #fff; padding: 28px 24px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; }
+.bio-photo { width: 168px; height: 168px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(0,168,255,.55); box-shadow: 0 0 40px rgba(0,168,255,.35); background: #0b2a45; }
+.bio-side h3 { font-size: 1.08rem; line-height: 1.3; color: #fff; }
+.bio-role { font-size: .7rem; letter-spacing: .14em; color: #45c7ff; font-weight: 700; }
+.bio-chips { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-top: 4px; }
+.bio-chips li { list-style: none; font-size: .72rem; padding: 6px 11px; border-radius: 999px; background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.16); }
+.bio-body { padding: 34px 32px 28px; color: #263446; }
+.bio-body h4 { font-size: .74rem; letter-spacing: .14em; color: #0077b6; margin: 0 0 10px; text-transform: uppercase; }
+.bio-body p { line-height: 1.75; margin-bottom: 14px; font-size: .96rem; }
+.bio-body ul { margin: 0 0 20px 0; padding: 0; }
+.bio-body ul li { list-style: none; position: relative; padding-left: 22px; margin-bottom: 9px; line-height: 1.6; font-size: .93rem; }
+.bio-body ul li::before { content: ""; position: absolute; left: 0; top: .6em; width: 9px; height: 9px; border-radius: 3px; background: linear-gradient(135deg, #00a8ff, #0077b6); }
+.bio-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.bio-close { position: absolute; right: 14px; top: 14px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: 0; cursor: pointer; font-size: 1.1rem; background: rgba(255,255,255,.14); color: #fff; backdrop-filter: blur(4px); transition: background .2s ease, transform .2s ease; }
+.bio-close:hover { background: rgba(255,255,255,.28); transform: rotate(90deg); }
+.bio-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 22px; padding-top: 16px; border-top: 1px solid #e4e9ef; }
+.bio-nav button { border: 1px solid #dce3eb; background: #fff; color: #0b2a45; border-radius: 10px; padding: 10px 14px; font: 600 .82rem/1 inherit; font-family: inherit; cursor: pointer; transition: border-color .2s, color .2s, transform .2s; }
+.bio-nav button:hover { border-color: #00a8ff; color: #0077b6; transform: translateY(-2px); }
+.ra-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 10px; border: 1px solid #dce3eb; background: #fff; color: #0b2a45; font: 700 .86rem/1 inherit; font-family: inherit; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.ra-btn:hover { transform: translateY(-2px); border-color: #00a8ff; }
+.ra-btn.primary { background: linear-gradient(135deg, #00a8ff, #0077b6); color: #fff; border-color: transparent; box-shadow: 0 10px 24px rgba(0,168,255,.28); }
+.ra-btn.whatsapp { background: #16a34a; color: #fff; border-color: transparent; }
+
+@media (max-width: 720px) {
+    .bio-modal { grid-template-columns: 1fr; max-height: 92vh; }
+    .bio-side { padding: 56px 20px 20px; }
+    .bio-photo { width: 120px; height: 120px; }
+    .bio-body { padding: 24px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .splash, .bio-modal, .bio-overlay.open, .ripple, .btn, .btn-bio { animation: none !important; transition: none !important; }
+    .btn-primary::after { display: none; }
+}

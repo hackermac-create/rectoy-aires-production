@@ -1,0 +1,32 @@
+# Blueprint Render — RECTOY-AIRES (PostgreSQL)
+# La base de données est externe au service : collez son adresse dans DATABASE_URL.
+services:
+  - type: web
+    name: rectoy-aires
+    runtime: node
+    plan: free            # TEST uniquement (mise en veille après 15 min). Production : "starter" (sans mise en veille)
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SSL
+        value: "true"     # "false" si vous utilisez l'adresse INTERNE d'une base Render
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: SITE_URL            # adresse publique du site, ex. https://rectoy-aires.onrender.com (puis votre domaine)
+        sync: false
+      - key: VIDEO_MAX_MB        # poids max d'une vidéo envoyée depuis l'admin (Mo)
+        value: "40"
+      - key: ANTHROPIC_API_KEY   # facultatif : active les réponses par modèle IA
+        sync: false

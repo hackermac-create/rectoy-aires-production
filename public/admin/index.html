@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Administration | RECTOY-AIRES</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen" style="display:none">
+  <form class="login-card" id="loginForm">
+    <div class="brand-logo login-logo">R</div>
+    <h1>Administration RECTOY-AIRES</h1>
+    <p class="login-subtitle">Connectez-vous pour gérer les publications.</p>
+    <div class="form-group"><label for="loginUsername">Identifiant</label><input type="text" id="loginUsername" autocomplete="username" required></div>
+    <div class="form-group"><label for="loginPassword">Mot de passe</label><input type="password" id="loginPassword" autocomplete="current-password" required></div>
+    <div class="login-error" id="loginError" aria-live="polite"></div>
+    <button type="submit" class="primary-btn login-submit">Se connecter</button>
+  </form>
+</div>
+
+<div class="admin-layout" style="display:none">
+
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-logo">R</div><div><strong>RECTOY-AIRES</strong><span>Administration</span></div></div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-section="dashboard">📊 <span>Tableau de bord</span></button>
+      <button class="nav-item" data-section="publications">📰 <span>Publications</span></button>
+      <button class="nav-item" data-section="create">➕ <span>Nouvelle publication</span></button>
+    </nav>
+    <div class="sidebar-bottom"><a href="magazine.html">📖 Magazine</a><a href="videos.html">🎬 Vidéos</a><a href="social.html">🔗 Réseaux</a><a href="conseiller.html">💬 Conseiller</a><a href="/" target="_blank" rel="noopener">🌐 Voir le site</a></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div><h1 id="pageTitle">Tableau de bord</h1><p>Gérez les actualités du site RECTOY-AIRES.</p></div>
+      <div class="admin-user"><div class="avatar">A</div><div><strong>Administrateur</strong><small>RECTOY-AIRES</small></div><button class="secondary-btn" id="logoutBtn" type="button">Déconnexion</button></div>
+    </header>
+
+    <section class="admin-section active" id="dashboard">
+      <div class="stats-grid">
+        <div class="stat-card"><span>Publications</span><strong id="totalPosts">0</strong><small>Total</small></div>
+        <div class="stat-card"><span>Annonces</span><strong id="totalAnnouncements">0</strong><small>Type annonce</small></div>
+        <div class="stat-card"><span>Événements</span><strong id="totalEvents">0</strong><small>Type événement</small></div>
+        <div class="stat-card"><span>Publicités</span><strong id="totalAds">0</strong><small>Type publicité</small></div>
+      </div>
+      <div class="dashboard-grid">
+        <div class="panel"><div class="panel-header"><div><h2>Publications récentes</h2><p>Les 5 dernières</p></div><button class="primary-btn" id="goCreate" type="button">+ Nouvelle</button></div><div id="recentPosts"></div></div>
+        <div class="panel"><div class="panel-header"><h2>Actions rapides</h2></div>
+          <div class="quick-actions">
+            <button type="button" data-create-type="annonce">📢 Nouvelle annonce</button>
+            <button type="button" data-create-type="evenement">📅 Nouvel événement</button>
+            <button type="button" data-create-type="publicite">🎯 Nouvelle publicité</button>
+            <a href="videos.html?new=publicite">🎬 Nouvelle publicité vidéo</a>
+            <a href="videos.html?new=reportage">📹 Nouveau reportage vidéo</a>
+          </div></div>
+      </div>
+    </section>
+
+    <section class="admin-section" id="publications">
+      <div class="panel">
+        <div class="panel-header"><div><h2>Toutes les publications</h2><p>Modifier, publier/masquer ou supprimer.</p></div><button class="primary-btn" id="goCreate2" type="button">+ Nouvelle</button></div>
+        <div class="filters">
+          <button class="post-filter active" type="button" data-filter="all">Tout</button>
+          <button class="post-filter" type="button" data-filter="annonce">Annonces</button>
+          <button class="post-filter" type="button" data-filter="evenement">Événements</button>
+          <button class="post-filter" type="button" data-filter="publicite">Publicités</button>
+        </div>
+        <div id="postsTable"></div>
+      </div>
+    </section>
+
+    <section class="admin-section" id="create">
+      <div class="panel">
+        <div class="panel-header"><h2 id="formTitle">Nouvelle publication</h2></div>
+        <form id="publicationForm">
+          <input type="hidden" id="editId">
+          <div class="form-grid">
+            <div class="form-group full"><label for="title">Titre *</label><input type="text" id="title" name="title" maxlength="120" required></div>
+            <div class="form-group"><label for="type">Type *</label><select id="type" name="type"><option value="annonce">Annonce</option><option value="evenement">Événement</option><option value="publicite">Publicité</option></select></div>
+            <div class="form-group"><label for="status">Statut</label><select id="status" name="status"><option value="published">Publié</option><option value="draft">Brouillon</option></select></div>
+            <div class="form-group"><label for="date">Date</label><input type="date" id="date" name="date"></div>
+            <div class="form-group"><label for="location">Lieu</label><input type="text" id="location" name="location" maxlength="120"></div>
+            <div class="form-group full"><label for="link">Lien (optionnel)</label><input type="url" id="link" name="link" placeholder="https://..."></div>
+            <div class="form-group full"><label for="image">Image</label><input type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp"><small>JPG, PNG ou WEBP — 5 Mo maximum. En modification, laissez vide pour garder l'image actuelle.</small></div>
+            <div class="form-group full"><label for="description">Description *</label><textarea id="description" name="description" rows="6" required></textarea></div>
+            <div class="form-group full social-share"><label>Publier aussi sur nos pages</label>
+  <div class="share-options">
+    <label><input type="checkbox" id="shareFacebook" name="shareFacebook"> <span>Facebook</span></label>
+    <label><input type="checkbox" id="shareInstagram" name="shareInstagram"> <span>Instagram</span></label>
+  </div>
+  <small id="shareHint">L'envoi se fait à l'enregistrement, uniquement si le statut est « Publié ». Instagram exige une image.</small></div>
+
+          </div>
+          <div class="form-actions"><button class="secondary-btn" id="cancelForm" type="button">Annuler</button><button class="primary-btn" type="submit">Enregistrer</button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="admin.js"></script>
+</body>
+</html>

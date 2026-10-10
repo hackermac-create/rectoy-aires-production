@@ -1,0 +1,22 @@
+IMAGES À COPIER DANS public/src/ (noms exacts)
+
+PHOTOS DES 7 COFONDATEURS (portrait, de préférence vertical, visage dans le haut) :
+src/emmanuel.jpeg      Emmanuel Yann Ako (Fondateur & DG)
+src/franky.jpeg        Traoré Franck
+src/louoba.jpeg        Louoba Aleba
+src/marilyne.jpeg      Mary Josephine
+src/odilon.jpeg        Odilon N'Guessan
+src/jean-daniel.jpeg   Jean-Daniel Ehiman
+src/kablan.jpeg        Kablan Raymond
+
+AUTRES :
+src/logo.jpeg          (déjà fourni : logo hexagone circuit « R »)
+src/images/annonce.jpg
+src/images/evenement.jpg
+src/platform-numerique.jpg
+src/publicite.jpeg
+src/rectoy-business.png
+src/virtual-commerce.jpg
+
+Une image manquante est remplacée automatiquement par le logo (cadré en entier, sur fond blanc).
+Les images des publications sont gérées dans /admin/ (stockées en base).

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="RECTOY MAGAZINE — le journal des entrepreneurs, des PME et des investisseurs : portraits, reportages, produits et activités, par RECTOY-AIRES.">
+<meta name="theme-color" content="#07111f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<title>RECTOY MAGAZINE | Entrepreneurs, PME et investisseurs</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="magazine.css">
+<script src="splash.js"></script>
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="assistant.css">
+<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="social.css">
+<link rel="stylesheet" href="videos.css">
+<link rel="stylesheet" href="voice.css">
+</head>
+<body class="magazine-page">
+<noscript><style>#splash{display:none!important}html.splash-active{overflow:auto!important}</style></noscript>
+<div class="splash" id="splash" role="dialog" aria-label="Chargement de RECTOY-AIRES">
+<video class="splash-video" id="splashVideo" muted playsinline preload="auto" poster="src/splash-poster.jpg"></video>
+<div class="splash-fallback" aria-hidden="true">
+<svg viewBox="0 0 100 100"><polygon class="hex" points="50,6 88,28 88,72 50,94 12,72 12,28"/><text class="letter" x="50" y="50" text-anchor="middle" dominant-baseline="central">R</text></svg>
+<strong>RECTOY<span>-AIRES</span></strong><small>TECHNOLOGIE • INNOVATION • IMPACT</small><em>Grandeur &amp; Rigueur</em>
+</div>
+<div class="splash-bar" aria-hidden="true"><span></span></div>
+<button class="splash-skip" id="splashSkip" type="button">Passer l'intro →</button>
+</div>
+
+
+<header class="header scrolled" id="header"><noscript><div class="container nav-container"><a href="/" class="logo"><span>RECTOY<span>-AIRES</span></span></a><nav class="nav"><a href="/">Accueil</a><a href="/magazine.html">Magazine</a><a href="/videos.html">Vidéos</a><a href="/#contact">Contact</a></nav></div></noscript></header>
+<script src="nav.js"></script>
+
+<main class="mag-main">
+
+<!-- UNE (liste) -->
+<div id="listView">
+
+<section class="mag-masthead">
+<div class="container">
+<div class="mag-topline"><span>Édition numérique</span><span id="magDate"></span><span>Côte d'Ivoire — Afrique</span></div>
+<h1 class="mag-title">RECTOY <span>MAGAZINE</span></h1>
+<p class="mag-tagline">Le journal des entrepreneurs, des PME et des investisseurs</p>
+</div>
+</section>
+
+<div class="mag-nav-wrap">
+<div class="container">
+<div class="mag-nav" id="magFilters" role="tablist" aria-label="Rubriques">
+<button type="button" class="active" data-cat="all">À la une</button>
+<button type="button" data-cat="portrait">Portraits</button>
+<button type="button" data-cat="reportage">Reportages</button>
+<button type="button" data-cat="entreprise">Entreprises &amp; PME</button>
+<button type="button" data-cat="investisseur">Investisseurs</button>
+<button type="button" data-cat="produit">Produits</button>
+<button type="button" data-cat="activite">Activités</button>
+<button type="button" data-cat="publicite">Publicités</button>
+</div>
+</div>
+</div>
+
+<div class="container">
+<div id="magHero"></div>
+<div id="magSecondary" class="mag-secondary"></div>
+<section class="mag-videos" id="magVideos" aria-labelledby="magVideosTitle" hidden>
+<div class="mag-videos-head"><h2 id="magVideosTitle">Reportages vidéo</h2><a href="/videos.html">Toutes les vidéos →</a></div>
+<div class="vd-grid" id="magVideosGrid"></div>
+</section>
+<h2 class="mag-section-title" id="magLatestTitle" hidden>Dernières publications</h2>
+<div id="magGrid" class="mag-grid"></div>
+<p id="magEmpty" class="mag-empty" hidden>Les premières éditions arrivent bientôt. Revenez nous lire très vite.</p>
+<p id="magLoading" class="mag-empty">Chargement du magazine…</p>
+</div>
+
+</div>
+
+<!-- ARTICLE -->
+<div id="articleView" hidden>
+<div class="container">
+<article class="mag-article" id="articleBody"></article>
+</div>
+</div>
+
+</main>
+
+<footer class="footer" id="siteFooter"></footer>
+<script src="nav.js" data-part="footer"></script>
+
+<a href="https://wa.me/2250705801517" class="whatsapp-button" target="_blank" rel="noopener noreferrer" aria-label="Contacter RECTOY-AIRES sur WhatsApp"><span>W</span></a>
+
+<script src="social-config.js" defer></script>
+<script src="social.js" defer></script>
+<script src="menu.js" defer></script>
+<script src="magazine.js" defer></script>
+<script src="ui.js" defer></script>
+<script src="voice.js" defer></script>
+<script src="videos.js" defer></script>
+<script src="assistant.js" defer></script>
+</body>
+</html>

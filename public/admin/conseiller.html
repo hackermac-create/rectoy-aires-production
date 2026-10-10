@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Conseiller — Demandes | RECTOY-AIRES</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.adm{max-width:1000px;margin:0 auto;padding:30px 20px}
+.adm-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.adm-top a{color:#0b6bcb;font-weight:700;text-decoration:none}
+.req{border-bottom:1px solid #edf0f4;padding:16px 0}
+.req:last-child{border-bottom:0}
+.req-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.req-head strong{font-size:1rem}
+.req-meta{color:#667085;font-size:.82rem;margin:2px 0 8px}
+.req-msg{background:#f5f7fa;border-radius:10px;padding:12px 14px;white-space:pre-wrap;line-height:1.55;margin:8px 0}
+.req details{margin:8px 0}
+.req summary{cursor:pointer;color:#0b6bcb;font-weight:600;font-size:.86rem}
+.tr{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.tr div{padding:8px 11px;border-radius:10px;font-size:.84rem;max-width:88%;white-space:pre-wrap}
+.tr .u{background:#e6f4ff;align-self:flex-end}
+.tr .a{background:#f1f3f6;align-self:flex-start}
+.chip-new{background:#fdecc8;color:#8a5a00}
+.chip-done{background:#dff3e6;color:#146c3c}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.74rem;font-weight:700}
+.links a{margin-right:10px;color:#0b6bcb;font-weight:600;text-decoration:none}
+#notice{padding:30px;text-align:center}
+</style>
+</head>
+<body>
+<nav id="adminbar"></nav>
+<div class="adm">
+  <div class="adm-top">
+    <h1>💬 Demandes transmises aux conseillers</h1>
+  </div>
+
+  <div class="panel" id="notice" hidden>
+    <p>Vous devez d'abord vous connecter.</p><br>
+    <a class="primary-btn" href="index.html" style="text-decoration:none;display:inline-block">Se connecter</a>
+  </div>
+
+  <div id="app" hidden>
+    <div class="panel">
+      <div class="panel-header">
+        <div><h2>Demandes de l'assistant</h2><p id="summary">Chargement…</p></div>
+        <button class="secondary-btn" id="refresh" type="button">↻ Actualiser</button>
+      </div>
+      <div id="list"></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="conseiller-admin.js"></script>
+<script src="adminbar.js"></script>
+</body>
+</html>

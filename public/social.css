@@ -1,0 +1,42 @@
+/* RECTOY-AIRES — réseaux sociaux & partage */
+.social-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.social-row.is-empty { display: none; }
+.soc { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 38px; height: 38px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #fff; font: 600 .84rem/1 inherit; cursor: pointer;
+    transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease; }
+.soc:hover { transform: translateY(-2px); color: #fff; border-color: transparent; background: var(--brand-grad, #1f7ae0); }
+.soc:focus-visible { outline: 2px solid var(--primary-light, #45c7ff); outline-offset: 2px; }
+.soc.is-soon { opacity: .4; pointer-events: none; }
+.social-row-labels .soc { width: auto; padding: 0 14px 0 11px; height: 40px; border-radius: 999px; }
+
+.hero-social { display: flex; align-items: center; gap: 14px; margin-top: 28px; color: rgba(255,255,255,.65); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
+.hero-social:has(.is-empty) { display: none; }
+
+.contact-social { margin-top: 28px; }
+.contact-social:has(.is-empty) { display: none; }
+.contact-social strong { display: block; margin-bottom: 12px; }
+.contact-social .soc { color: var(--text-dark, #101827); border-color: var(--border, #e4e9ef); background: #fff; }
+.contact-social .soc:hover { color: #fff; }
+
+.footer-social { flex-direction: column; align-items: flex-start; }
+.footer-social .soc { border: 0; background: transparent; padding-left: 0; color: rgba(255,255,255,.72); }
+.footer-social .soc:hover { background: transparent; color: #45c7ff; transform: translateX(3px); }
+
+/* Cartes des cofondateurs */
+.founder-socials .soc { width: 34px; height: 34px; border-radius: 10px; color: var(--text-light, #667085); border-color: var(--border, #e4e9ef); background: #fff; }
+.founder-socials .soc:hover { color: #fff; }
+.founder-image img.is-placeholder { object-fit: contain; padding: 14%; background: #fff; }
+.bio-photo.is-placeholder { object-fit: contain; background: #fff; padding: 10%; }
+
+/* Barre « Partager » */
+.share-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border, #e4e9ef); }
+.share-label { display: inline-flex; align-items: center; gap: 6px; margin-right: 4px; color: var(--text-light, #667085); font-size: .75rem; font-weight: 700; }
+.share-label svg { width: 15px; height: 15px; }
+.share-bar .soc { width: 32px; height: 32px; border-radius: 9px; color: var(--text-light, #667085); border-color: var(--border, #e4e9ef); background: #fff; }
+.share-bar .soc svg { width: 16px; height: 16px; }
+.share-bar .soc:hover { color: #fff; }
+.share-bar .soc.copied { background: #12a150; color: #fff; border-color: transparent; }
+
+/* Équipe de 7 : la dernière carte est centrée sous les autres */
+@media (min-width: 1051px) { .founders-grid .founder-card:last-child:nth-child(3n+1) { grid-column: 2; } }
+@media (min-width: 651px) and (max-width: 1050px) { .founders-grid .founder-card:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 12px); } }

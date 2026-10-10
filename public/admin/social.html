@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Réseaux sociaux — Administration | RECTOY-AIRES</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.mag-admin{max-width:1000px;margin:0 auto;padding:22px 20px 40px}
+.mag-admin h1{margin:0 0 18px}
+#notice{padding:30px;text-align:center}
+.soc-owner{border:1px solid #e4e9ef;border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+.soc-owner>summary{cursor:pointer;padding:15px 18px;font-weight:700;display:flex;justify-content:space-between;gap:12px;align-items:center;list-style:none}
+.soc-owner>summary::-webkit-details-marker{display:none}
+.soc-owner>summary small{font-weight:600;color:#667085}
+.soc-owner[open]>summary{border-bottom:1px solid #edf0f4;background:#f7fafd}
+.soc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:18px}
+.soc-grid label{display:block;font-weight:600;font-size:.88rem;margin-bottom:5px}
+.soc-grid input{width:100%}
+.soc-grid input.bad{border-color:#d92d20}
+.soc-grid small{display:block;margin-top:4px;color:#8793a3;font-size:.78rem}
+.soc-save{position:sticky;bottom:0;background:linear-gradient(to top,#f4f7fb 70%,transparent);padding:18px 0 6px;display:flex;gap:12px;align-items:center;justify-content:flex-end}
+.vid-tip{background:#f1f7fd;border:1px solid #d6e9f8;border-radius:10px;padding:12px 14px;font-size:.88rem;color:#254a6b;line-height:1.6;margin-bottom:18px}
+</style>
+</head>
+<body>
+<nav id="adminbar"></nav>
+<div class="mag-admin">
+  <h1>🔗 Réseaux sociaux</h1>
+
+  <div class="panel" id="notice" hidden>
+    <p>Vous devez d'abord vous connecter.</p><br>
+    <a class="primary-btn" href="index.html" style="text-decoration:none;display:inline-block">Se connecter</a>
+  </div>
+
+  <div id="app" hidden>
+    <div class="vid-tip">
+      Collez le <strong>lien</strong> de la page ou juste le <strong>@pseudo</strong> (ex. <code>@rectoyaires</code>) ; pour WhatsApp, le <strong>numéro</strong> avec l'indicatif.
+      Chaque réseau renseigné apparaît automatiquement dans l'en-tête, l'accueil, la section Contact, le pied de page et — pour un cofondateur — sur sa carte.
+      Un champ <strong>vide</strong> masque le réseau. Les changements sont visibles sur le site en moins d'une minute.
+    </div>
+    <form id="form" novalidate>
+      <div id="owners"></div>
+      <div class="soc-save"><span id="status" role="status" style="color:#667085;font-size:.9rem"></span><button class="primary-btn" id="save" type="submit">Enregistrer</button></div>
+    </form>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="adminbar.js"></script>
+<script src="social-admin.js"></script>
+</body>
+</html>

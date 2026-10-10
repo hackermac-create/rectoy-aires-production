@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Vidéos — Administration | RECTOY-AIRES</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.mag-admin{max-width:1000px;margin:0 auto;padding:22px 20px 30px}
+.mag-admin h1{margin:0 0 18px}
+.check{flex-direction:row!important;align-items:center}.check input{width:auto}
+#notice{padding:30px;text-align:center}
+</style>
+</head>
+<body>
+<nav id="adminbar"></nav>
+<div class="mag-admin">
+  <h1>🎬 Vidéos : publicités, reportages, présentation</h1>
+
+  <div class="panel" id="notice" hidden>
+    <p>Vous devez d'abord vous connecter.</p><br>
+    <a class="primary-btn" href="index.html" style="text-decoration:none;display:inline-block">Se connecter</a>
+  </div>
+
+  <div id="app" hidden>
+    <div class="panel" style="margin-bottom:22px">
+      <div class="panel-header"><div><h2>Vidéos</h2><p>Elles apparaissent sur l'accueil, la page Vidéos et dans les articles du magazine.</p></div>
+        <button class="primary-btn" id="newBtn" type="button">+ Nouvelle vidéo</button></div>
+      <div class="filters" id="filters">
+        <button class="post-filter active" type="button" data-filter="all">Toutes</button>
+        <button class="post-filter" type="button" data-filter="publicite">Publicités</button>
+        <button class="post-filter" type="button" data-filter="reportage">Reportages</button>
+        <button class="post-filter" type="button" data-filter="presentation">Présentation</button>
+      </div>
+      <div id="list"></div>
+    </div>
+
+    <div class="panel" id="formPanel" hidden>
+      <div class="panel-header"><h2 id="formTitle">Nouvelle vidéo</h2></div>
+      <form id="form">
+        <input type="hidden" id="editId">
+        <div class="form-grid">
+          <div class="form-group full"><label for="title">Titre *</label><input id="title" maxlength="150" required></div>
+          <div class="form-group"><label for="kind">Type *</label>
+            <select id="kind">
+              <option value="publicite">Publicité</option>
+              <option value="reportage">Reportage du magazine</option>
+              <option value="presentation">Présentation de l'entreprise</option>
+            </select></div>
+          <div class="form-group"><label for="status">Statut</label>
+            <select id="status"><option value="published">Publié</option><option value="draft">Brouillon</option></select></div>
+          <div class="form-group full" id="articleBox"><label for="articleId">Article du magazine lié (optionnel)</label>
+            <select id="articleId"><option value="">— Aucun —</option></select>
+            <small>La vidéo s'affiche alors dans cet article, et l'article reçoit le badge « Vidéo ».</small></div>
+          <div class="form-group check"><label><input type="checkbox" id="featured"> ⭐ Mettre « À la une » (vidéo à l'affiche sur l'accueil)</label></div>
+
+          <div class="form-group full"><label>Source de la vidéo *</label>
+            <div class="src-choice">
+              <label><input type="radio" name="src" value="embed" checked> Lien YouTube / Vimeo (recommandé)</label>
+              <label><input type="radio" name="src" value="upload"> Fichier MP4 / WEBM</label>
+            </div></div>
+          <div class="form-group full" id="embedBox"><label for="embedUrl">Lien de la vidéo</label>
+            <input type="url" id="embedUrl" placeholder="https://www.youtube.com/watch?v=… ou https://vimeo.com/…">
+            <small>Aucune limite de durée, lecture fluide partout. Sur YouTube, choisissez « Non répertoriée » si la vidéo ne doit pas être publique.</small></div>
+          <div class="form-group full" id="fileBox" hidden><label for="video">Fichier vidéo</label>
+            <input type="file" id="video" accept="video/mp4,video/webm">
+            <small id="fileHint">MP4 (H.264) ou WEBM.</small>
+            <div class="progress" id="progress" hidden><span></span></div></div>
+
+          <div class="form-group full"><label for="poster">Image de couverture (optionnelle)</label>
+            <input type="file" id="poster" accept="image/jpeg,image/png,image/webp">
+            <small>JPG, PNG ou WEBP — 5 Mo maximum. Sans couverture : image de la vidéo (YouTube) ou première image du fichier.</small></div>
+          <div class="form-group full"><label for="description">Description</label><textarea id="description" rows="4" maxlength="1500"></textarea>
+            <small>Affichée sous la vidéo et lisible à voix haute par le bouton « Écouter la présentation ».</small></div>
+          <div class="form-group"><label for="ctaLabel">Texte du bouton (optionnel)</label><input id="ctaLabel" maxlength="40" placeholder="Ex. Nous contacter"></div>
+          <div class="form-group"><label for="ctaLink">Lien du bouton</label><input id="ctaLink" placeholder="https://… ou /#contact"></div>
+          <div class="form-group full"><div class="vid-tip">💡 <strong>Pour un fichier :</strong> format MP4 (H.264 + AAC), 720p, idéalement moins de 2 minutes, <span id="maxMb">40</span> Mo maximum. Au-delà, publiez sur YouTube ou Vimeo et collez le lien : la base de données reste légère et la lecture plus rapide.</div></div>
+        </div>
+        <div class="form-actions"><button class="secondary-btn" id="cancel" type="button">Annuler</button><button class="primary-btn" id="save" type="submit">Enregistrer</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="adminbar.js"></script>
+<script src="videos-admin.js"></script>
+</body>
+</html>

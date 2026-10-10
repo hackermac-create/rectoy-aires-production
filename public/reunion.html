@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<title>Réunion des cofondateurs | RECTOY-AIRES</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;background:#f5f7fa;color:#263446;line-height:1.6}
+.top{background:linear-gradient(135deg,#07111f,#0b2a45);color:#fff;padding:34px 20px 70px;text-align:center}
+.top small{display:inline-block;border:1px solid rgba(0,168,255,.4);border-radius:100px;padding:6px 14px;font-size:.7rem;letter-spacing:.14em;color:#45c7ff;margin-bottom:14px}
+.top h1{font-size:clamp(1.5rem,5vw,2.2rem);line-height:1.2;letter-spacing:-.02em}
+.top p{color:rgba(255,255,255,.7);margin-top:8px;font-size:.95rem}
+.wrap{max-width:680px;margin:-44px auto 40px;padding:0 16px}
+.card{background:#fff;border:1px solid #e4e9ef;border-radius:18px;box-shadow:0 18px 50px rgba(7,17,31,.10);padding:26px}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.info div{background:#eaf5ff;border-radius:12px;padding:12px 14px}
+.info b{display:block;font-size:.72rem;letter-spacing:.08em;color:#0077b6;text-transform:uppercase}
+.info span{font-size:.92rem;color:#101827;font-weight:600}
+.info .full{grid-column:1/-1}
+h2{font-size:1.05rem;color:#101827;margin:6px 0 10px}
+ol{margin:0 0 22px 20px;font-size:.92rem}
+.f{margin-bottom:18px}
+label.t,legend{display:block;font-weight:700;font-size:.85rem;color:#101827;margin-bottom:7px}
+input[type=text],input[type=email],textarea{width:100%;border:1px solid #dce3eb;border-radius:10px;background:#fafbfc;padding:12px 14px;font:inherit;outline:none}
+input:focus,textarea:focus{border-color:#00a8ff;box-shadow:0 0 0 4px rgba(0,168,255,.1);background:#fff}
+textarea{min-height:110px;resize:vertical}
+fieldset{border:0}
+.opt{display:flex;align-items:center;gap:10px;border:1px solid #dce3eb;border-radius:10px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:.92rem}
+.opt:has(input:checked){border-color:#00a8ff;background:#eaf5ff}
+.opt input{accent-color:#0077b6;width:18px;height:18px}
+button{width:100%;border:0;border-radius:12px;padding:15px;font:inherit;font-weight:800;color:#fff;background:linear-gradient(135deg,#00a8ff,#0077b6);cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+#msg{margin-top:14px;font-weight:600;font-size:.9rem;text-align:center}
+.ok{color:#16834b}.err{color:#c1272d}
+.foot{text-align:center;color:#8995a4;font-size:.75rem;margin-top:18px}
+@media(max-width:520px){.info{grid-template-columns:1fr}.card{padding:20px}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <small>DOCUMENT CONFIDENTIEL</small>
+  <h1>Réunion des cofondateurs</h1>
+  <p>RECTOY-AIRES TECHNOLOGIES — En vue des votes</p>
+</div>
+
+<div class="wrap"><div class="card">
+
+  <div class="info">
+    <div><b>Date</b><span>Vendredi 02 octobre 2026 à 21h15</span></div>
+    <div><b>Durée</b><span>2 h</span></div>
+    <div><b>Format</b><span>En ligne (Google Meet)</span></div>
+    <div><b>Objectif</b><span>Trouver des activités pour générer facilement des revenus et faire connaître RECTOY-AIRES</span></div>
+  </div>
+
+  <h2>Points à l'ordre du jour</h2>
+  <ol>
+    <li>Activités clés pour le lancement de RECTOY-AIRES</li>
+    <li>Questions diverses</li>
+  </ol>
+
+  <form id="f" action="https://formspree.io/f/xeaoblje" method="POST">
+    <input type="hidden" name="_subject" value="Réponse réunion cofondateurs RECTOY-AIRES — 02/10/2026">
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+
+    <div class="f"><label class="t" for="name">Nom complet *</label>
+      <input type="text" id="name" name="Nom" autocomplete="name" required></div>
+
+    <div class="f"><label class="t" for="email">Email *</label>
+      <input type="email" id="email" name="email" autocomplete="email" required></div>
+
+    <fieldset class="f"><legend>Serez-vous présent(e) à la réunion ? *</legend>
+      <label class="opt"><input type="radio" name="Présence" value="Présent(e)" required> Oui, je serai présent(e) à l'heure</label>
+      <label class="opt"><input type="radio" name="Présence" value="Présent(e) avec retard"> Oui, mais avec un léger retard</label>
+      <label class="opt"><input type="radio" name="Présence" value="Absent(e)"> Non, je ne pourrai pas être présent(e)</label>
+      <label class="opt"><input type="radio" name="Présence" value="Ne sait pas encore"> Je ne sais pas encore</label>
+    </fieldset>
+
+    <div class="f"><label class="t" for="retard">Si retard ou absence, précisez (heure d'arrivée, raison)</label>
+      <textarea id="retard" name="Précisions présence" style="min-height:70px"></textarea></div>
+
+    <div class="f"><label class="t" for="idees">Vos idées d'activités pour générer des revenus et faire connaître RECTOY-AIRES</label>
+      <textarea id="idees" name="Idées d'activités"></textarea></div>
+
+    <div class="f"><label class="t" for="qd">Questions diverses ou sujets à ajouter</label>
+      <textarea id="qd" name="Questions diverses"></textarea></div>
+
+    <button type="submit" id="btn">Envoyer ma réponse</button>
+    <div id="msg" aria-live="polite"></div>
+  </form>
+
+  <p class="foot">Merci de répondre avant la réunion. Vos réponses sont transmises à l'équipe RECTOY-AIRES.</p>
+</div></div>
+
+<script>
+const f = document.getElementById("f"), btn = document.getElementById("btn"), msg = document.getElementById("msg");
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  btn.disabled = true; msg.className = ""; msg.textContent = "Envoi en cours...";
+  try {
+    const res = await fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error("code " + res.status);
+    f.reset();
+    msg.className = "ok";
+    msg.textContent = "Merci ! Votre réponse a bien été envoyée.";
+  } catch (err) {
+    msg.className = "err";
+    msg.textContent = "Erreur d'envoi (" + err.message + "). Merci de répondre directement sur WhatsApp au +225 0705801517.";
+  }
+  btn.disabled = false;
+});
+</script>
+</body>
+</html>

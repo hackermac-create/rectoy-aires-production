@@ -1,0 +1,27 @@
+# RECTOY-AIRES
+
+Site vitrine + administration + API (Node.js, Express, PostgreSQL).
+
+- `public/` : site (index.html, style.css, index.js), `public/admin/` : administration, `public/src/` : images
+- `public/magazine.html` : RECTOY MAGAZINE (journal en ligne) · `src/routes/magazine.js` : son API
+- `server.js` : serveur, API et sécurité · `database/schema.sql` : tables
+- `render.yaml` : déploiement Render · `GUIDE-MISE-EN-LIGNE.md` : toutes les étapes
+
+Démarrage local : `npm install` puis `npm start` (voir le guide).
+
+
+## Nouveautés
+
+- **Assistant IA + conseiller** : bouton « Assistant » en bas à droite du site. Il répond depuis `src/assistant/knowledge.js` ; s'il n'a pas la solution (2 échecs), si la question est commerciale (prix, devis, partenariat…) ou si la personne le demande, il propose un formulaire de relais + WhatsApp. Les demandes arrivent dans `/admin/conseiller.html`. Clé `ANTHROPIC_API_KEY` facultative pour des réponses par modèle IA (voir `.env.example`).
+- **Biographies des cofondateurs** : bouton « Biographie » sur chaque carte ; textes modifiables dans `public/founders.js`.
+- **Boutons professionnels** : `public/ui.css` + `public/ui.js` (retour au clic, focus clavier, état de chargement, liens non renseignés grisés).
+- **Favicon** : `favicon.svg/.ico`, icônes Apple et PWA, `site.webmanifest`.
+- **Splash screen vidéo** : `public/src/splash.mp4` (paysage) et `splash-mobile.mp4` (portrait), une fois par session, bouton « Passer l'intro », repli animé si la vidéo ne se lit pas.
+- Régénérer favicon + vidéos : `python3 scripts/brand/make_assets.py` (Pillow + ffmpeg).
+- **Équipe de 7 cofondateurs** (rôles issus du document « Organisation et rôles ») : cartes dans `public/index.html`, biographies dans `public/founders.js`, photos dans `public/src/` (voir `LISEZMOI-IMAGES.txt`), logo en repli automatique.
+- **Réseaux sociaux** : liens dans `public/social-config.js`, partage visiteurs, publication automatique Facebook/Instagram depuis l'admin → `GUIDE-RESEAUX-SOCIAUX.md`.
+- **Menu et pied de page uniques** : `public/nav.js` génère le même menu (Accueil · Entreprise ▾ · Expertises · Projets · Médias ▾ · Contact) et le même pied de page sur TOUTES les pages. Pour modifier une entrée : éditez le tableau `NAV` de `nav.js` (une seule fois). Comportement : `public/menu.js` + `menu.css` (sous-menus au clavier, section active, panneau mobile).
+- **Vidéos (publicités, reportages, présentation)** : ajout depuis `/admin/videos.html` — fichier MP4/WEBM (≤ `VIDEO_MAX_MB`, 40 Mo par défaut) ou lien YouTube / Vimeo (recommandé pour les vidéos longues). Affichage : vidéo « À la une » dans le hero de l'accueil, section Vidéos de l'accueil, page `/videos.html`, bandeau « Reportages vidéo » et vidéos intégrées dans les articles du magazine (badge « Vidéo » sur les cartes). Un reportage se lie à un article depuis l'admin (liste déroulante, ou bouton « 🎬 Vidéo » dans l'admin du magazine). Code : `src/routes/videos.js`, `public/videos.js`, `public/videos.css`.
+- **Assistant vocal** : `public/voice.js` — bouton 🔊 (lecture des réponses à voix haute), micro 🎤 (dictée, envoi automatique), **visite guidée vocale** du site (bouton « Visite guidée » du menu, puce de l'assistant, ou `/?tour=1`) et « Écouter l'article » / « Écouter la présentation ». Utilise les voix du navigateur (gratuit, sans clé) ; les textes de la visite sont dans le tableau `STEPS` de `voice.js`. La dictée n'existe pas sur Firefox (le micro est alors masqué).
+- **Réseaux sociaux** : liens de l'entreprise et de chaque cofondateur saisis dans `/admin/social.html` (stockés en base, table `social_links`, API `/api/social`) ; 10 réseaux gérés, liens contrôlés par réseau. Code : `src/routes/social.js`, `public/social.js`. Voir `GUIDE-RESEAUX-SOCIAUX.md`.
+- **Administration** : barre de navigation commune (`public/admin/adminbar.js`) : Tableau de bord · Magazine · Vidéos · Conseiller.

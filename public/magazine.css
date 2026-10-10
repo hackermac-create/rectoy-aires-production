@@ -1,0 +1,270 @@
+/* RECTOY MAGAZINE — style éditorial (journal) */
+
+.magazine-page {
+    background: #faf8f4;
+    color: #1d2733;
+}
+
+.mag-main { padding-top: 78px; min-height: 80vh; }
+
+.magazine-page .nav a.nav-magazine { color: #45c7ff; }
+
+.mag-masthead {
+    padding: 38px 0 18px;
+    text-align: center;
+    background: #faf8f4;
+}
+
+.mag-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px 0;
+    border-top: 4px double #101827;
+    border-bottom: 1px solid #101827;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #4a5568;
+}
+
+.mag-title {
+    margin: 22px 0 6px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.4rem, 9vw, 5.6rem);
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: #101827;
+    font-weight: 700;
+}
+
+.mag-title span { color: #0077b6; }
+
+.mag-tagline {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #4a5568;
+    padding-bottom: 16px;
+}
+
+.mag-nav-wrap {
+    position: sticky;
+    top: 78px;
+    z-index: 50;
+    background: #faf8f4;
+    border-top: 1px solid #101827;
+    border-bottom: 3px double #101827;
+}
+
+.mag-nav {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 6px 0;
+    scrollbar-width: none;
+}
+
+.mag-nav button {
+    flex-shrink: 0;
+    background: transparent;
+    border: 0;
+    padding: 9px 14px;
+    font-family: inherit;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #263446;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+}
+
+.mag-nav button:hover { color: #0077b6; }
+.mag-nav button.active { color: #0077b6; border-bottom-color: #0077b6; }
+
+.mag-cat {
+    display: inline-block;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #0077b6;
+}
+
+.mag-meta {
+    font-size: .78rem;
+    color: #667085;
+}
+
+/* À la une */
+.mag-hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 34px;
+    padding: 34px 0;
+    border-bottom: 1px solid #cfc9bd;
+    color: inherit;
+}
+
+.mag-hero-img {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #e5e1d8;
+}
+
+.mag-hero-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.mag-hero:hover .mag-hero-img img { transform: scale(1.03); }
+
+.mag-hero-body { display: flex; flex-direction: column; justify-content: center; }
+
+.mag-hero h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    line-height: 1.1;
+    margin: 12px 0 14px;
+    color: #101827;
+}
+
+.mag-hero p { font-size: 1.05rem; color: #3b4859; margin-bottom: 14px; }
+
+.mag-badge-une {
+    display: inline-block;
+    background: #c1272d;
+    color: #fff;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    padding: 4px 9px;
+    margin-bottom: 4px;
+    width: fit-content;
+}
+
+.mag-secondary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    padding: 26px 0;
+    border-bottom: 1px solid #cfc9bd;
+}
+
+.mag-secondary:empty { display: none; }
+
+.mag-section-title {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    margin: 30px 0 4px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #101827;
+}
+
+.mag-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 26px 0 60px;
+}
+
+.mag-card { display: block; color: inherit; }
+.mag-card-img { aspect-ratio: 3 / 2; overflow: hidden; background: #e5e1d8; margin-bottom: 12px; }
+.mag-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.mag-card:hover .mag-card-img img { transform: scale(1.04); }
+
+.mag-card h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin: 6px 0 8px;
+    color: #101827;
+}
+
+.mag-card:hover h3 { color: #0077b6; }
+.mag-card p { font-size: .9rem; color: #3b4859; margin-bottom: 8px; }
+
+.mag-empty { text-align: center; padding: 70px 0; color: #667085; font-family: Georgia, serif; font-style: italic; }
+
+/* Article */
+.mag-article { max-width: 760px; margin: 0 auto; padding: 40px 0 70px; }
+
+.mag-back { display: inline-block; margin-bottom: 18px; font-weight: 700; font-size: .85rem; color: #0077b6; }
+
+.mag-article h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    margin: 12px 0 14px;
+    color: #101827;
+}
+
+.mag-chapo {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #3b4859;
+    margin-bottom: 18px;
+}
+
+.mag-article-meta {
+    padding: 10px 0;
+    border-top: 1px solid #101827;
+    border-bottom: 1px solid #cfc9bd;
+    margin-bottom: 24px;
+    font-size: .82rem;
+    color: #4a5568;
+}
+
+.mag-article-img { margin: 0 0 26px; }
+.mag-article-img img { width: 100%; max-height: 460px; object-fit: cover; }
+
+.mag-text p {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.12rem;
+    line-height: 1.85;
+    margin-bottom: 18px;
+}
+
+.mag-text > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.6rem;
+    line-height: .9;
+    padding: 6px 10px 0 0;
+    font-weight: 700;
+    color: #0077b6;
+}
+
+.mag-text h3 {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    margin: 28px 0 12px;
+    color: #101827;
+}
+
+.mag-share {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid #cfc9bd;
+}
+
+.mag-share a {
+    display: inline-block;
+    background: #16a34a;
+    color: #fff;
+    padding: 10px 18px;
+    font-weight: 800;
+    font-size: .85rem;
+    border-radius: 8px;
+}
+
+.magazine-page .footer-bottom a { color: #45c7ff; }
+
+@media (max-width: 900px) {
+    .mag-hero { grid-template-columns: 1fr; gap: 18px; }
+    .mag-secondary, .mag-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .mag-secondary, .mag-grid { grid-template-columns: 1fr; }
+    .mag-topline span:nth-child(3) { display: none; }
+    .mag-nav-wrap { top: 70px; }
+    .mag-main { padding-top: 70px; }
+}
