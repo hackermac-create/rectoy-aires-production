@@ -135,6 +135,12 @@ const ENTRIES = [
         handoff: true
     },
     {
+        id: "diagnostic",
+        keywords: ["diagnostic", "audit", "evaluer mon besoin", "analyse de mon besoin", "etudier mon projet", "faire etudier", "demande de projet", "formulaire de diagnostic"],
+        answer: "Le formulaire de diagnostic permet de décrire votre besoin en trois étapes (coordonnées, besoin, projet). Votre demande reçoit un numéro de référence et un conseiller la suit jusqu'à la proposition.",
+        actions: [A.diagnostic, A.conseiller]
+    },
+    {
         id: "prix",
         keywords: ["prix", "tarif", "tarifs", "cout", "coute", "couter", "coutent", "combien", "devis", "budget", "payer", "paiement", "gratuit", "abonnement"],
         answer: "Les tarifs dépendent de votre besoin : nous ne communiquons pas de prix fixes sur le site. Un conseiller peut étudier votre projet et vous orienter vers un devis.",

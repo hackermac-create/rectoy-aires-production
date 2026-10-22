@@ -22,6 +22,7 @@
     ] },
     { t: "Expertises", id: "services" },
     { t: "Projets", id: "projets" },
+    { t: "Diagnostic", id: "diagnostic" },
     { t: "Médias", kids: [
       { t: "RECTOY Magazine", d: "Portraits, reportages, investisseurs", id: "magazine", page: "/magazine.html" },
       { t: "Vidéos", d: "Publicités et reportages en vidéo", id: "videos", page: "/videos.html" },

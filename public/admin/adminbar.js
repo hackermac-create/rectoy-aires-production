@@ -7,6 +7,7 @@
     ["magazine.html", "📖 Magazine"],
     ["videos.html", "🎬 Vidéos"],
     ["social.html", "🔗 Réseaux"],
+    ["diagnostics.html", "📋 Diagnostics"],
     ["conseiller.html", "💬 Conseiller"]
   ];
   var bar = document.getElementById("adminbar");

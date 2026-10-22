@@ -1,0 +1,44 @@
+/* RECTOY-AIRES — formulaire de diagnostic client */
+.diag-section { background: linear-gradient(180deg, #f5f8fc, #fff); }
+.diag-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+.diag-intro h2 { margin: 10px 0 14px; }
+.diag-intro p { color: #52607a; line-height: 1.7; }
+.diag-points { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 14px; }
+.diag-points li { display: flex; gap: 12px; align-items: flex-start; color: #263446; line-height: 1.5; }
+.diag-points b { flex: none; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; color: #fff; font-size: .85rem; background: linear-gradient(135deg, #00a8ff, #0077b6); }
+
+.diag-form { background: #fff; border: 1px solid #e4e9ef; border-radius: 20px; padding: 28px; box-shadow: 0 24px 60px rgba(11,42,69,.08); }
+.diag-progress { display: flex; gap: 8px; margin-bottom: 8px; }
+.diag-progress span { flex: 1; height: 5px; border-radius: 99px; background: #e4e9ef; transition: background .3s; }
+.diag-progress span.on { background: linear-gradient(90deg, #00a8ff, #0077b6); }
+.diag-stepname { font-size: .78rem; font-weight: 700; letter-spacing: .08em; color: #0077b6; margin-bottom: 18px; text-transform: uppercase; }
+.diag-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: none; }
+.diag-form fieldset.on { display: block; animation: diag-in .3s ease; }
+@keyframes diag-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.diag-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.diag-form .form-group select { width: 100%; border: 1px solid #dce3eb; border-radius: 12px; padding: 13px 14px; font: inherit; background: #fafbfc; color: #101827; }
+.diag-form .form-group select:focus { outline: 0; border-color: #00a8ff; box-shadow: 0 0 0 3px rgba(0,168,255,.14); background: #fff; }
+.diag-legend { font-weight: 700; font-size: .9rem; margin: 4px 0 10px; color: #263446; display: block; }
+.diag-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.diag-chip { position: relative; }
+.diag-chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.diag-chip span { display: inline-block; padding: 9px 14px; border-radius: 999px; border: 1px solid #cfdbe8; background: #fff; font-size: .84rem; font-weight: 600; color: #263446; transition: all .2s; }
+.diag-chip:hover span { border-color: #00a8ff; }
+.diag-chip input:checked + span { background: linear-gradient(135deg, #00a8ff, #0077b6); color: #fff; border-color: transparent; box-shadow: 0 6px 16px rgba(0,119,182,.25); }
+.diag-chip input:focus-visible + span { outline: 3px solid rgba(0,168,255,.55); outline-offset: 2px; }
+.diag-consent { display: flex; gap: 10px; align-items: flex-start; font-size: .84rem; color: #52607a; line-height: 1.5; margin: 6px 0 4px; }
+.diag-consent input { margin-top: 3px; width: 18px; height: 18px; flex: none; accent-color: #0077b6; }
+.diag-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
+.diag-actions .btn { min-width: 130px; }
+.diag-error { color: #a4262c; background: #fdeceb; border: 1px solid #f4c7c4; border-radius: 10px; padding: 10px 12px; font-size: .86rem; font-weight: 600; margin-top: 12px; }
+.diag-error:empty { display: none; }
+.diag-done { text-align: center; padding: 18px 6px; }
+.diag-done .tick { width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 50%; display: grid; place-items: center; font-size: 1.8rem; color: #fff; background: linear-gradient(135deg, #22c55e, #15803d); }
+.diag-done .ref { display: inline-block; margin: 8px 0 14px; padding: 8px 14px; border-radius: 10px; background: #eaf5ff; color: #0b2a45; font-weight: 800; letter-spacing: .06em; }
+.diag-hp { position: absolute !important; left: -9999px !important; height: 0 !important; opacity: 0 !important; }
+@media (max-width: 900px) { .diag-wrap { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 520px) { .diag-row { grid-template-columns: 1fr; } .diag-form { padding: 20px; } }
+@media (prefers-reduced-motion: reduce) { .diag-form fieldset.on { animation: none; } }
+
+/* l'attribut hidden doit toujours gagner sur .btn { display: inline-flex } */
+.diag-actions [hidden] { display: none !important; }

@@ -596,6 +596,7 @@ app.use("/api", require("./src/routes/social")({ express, query, requireAuth, fa
 // ================================
 
 app.use("/api", require("./src/routes/assistant")({ express, query, requireAuth, fail }));
+app.use("/api", require("./src/routes/diagnostic")({ express, query, requireAuth, fail }));
 
 
 // ================================

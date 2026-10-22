@@ -158,3 +158,53 @@ CREATE TABLE IF NOT EXISTS social_links (
     updated_at TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
     PRIMARY KEY (owner, network)
 );
+
+
+-- =========================================================
+-- DIAGNOSTIC CLIENT + SUIVI COMMERCIAL
+-- Pipeline : nouveau → contacté → diagnostic → proposition → négociation → gagné / perdu
+-- =========================================================
+CREATE TABLE IF NOT EXISTS diagnostic_requests (
+    id                 BIGSERIAL PRIMARY KEY,
+    reference          VARCHAR(20) UNIQUE,
+    name               VARCHAR(100) NOT NULL,
+    company            VARCHAR(150),
+    email              VARCHAR(150) NOT NULL,
+    phone              VARCHAR(40),
+    country            VARCHAR(60),
+    sector             VARCHAR(40),
+    company_size       VARCHAR(20),
+    needs              TEXT[]       NOT NULL DEFAULT '{}',
+    budget             VARCHAR(20),
+    urgency            VARCHAR(20),
+    message            TEXT         NOT NULL,
+    score              SMALLINT     NOT NULL DEFAULT 0,
+    status             VARCHAR(20)  NOT NULL DEFAULT 'nouveau'
+                       CHECK (status IN ('nouveau','contacte','diagnostic','proposition','negociation','gagne','perdu')),
+    assigned_to        VARCHAR(80),
+    estimated_value    BIGINT       CHECK (estimated_value IS NULL OR estimated_value >= 0),
+    next_followup      DATE,
+    lost_reason        VARCHAR(200),
+    source_page        VARCHAR(200),
+    created_at         TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    updated_at         TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    status_changed_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS diagnostic_events (
+    id          BIGSERIAL PRIMARY KEY,
+    request_id  BIGINT       NOT NULL REFERENCES diagnostic_requests(id) ON DELETE CASCADE,
+    kind        VARCHAR(12)  NOT NULL CHECK (kind IN ('creation','statut','note','suivi')),
+    detail      TEXT         NOT NULL,
+    created_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_diag_status_created ON diagnostic_requests(status, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_diag_followup ON diagnostic_requests(next_followup) WHERE next_followup IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_diag_events_request ON diagnostic_events(request_id, created_at DESC);
+
+DROP TRIGGER IF EXISTS trg_diagnostic_requests_updated_at ON diagnostic_requests;
+CREATE TRIGGER trg_diagnostic_requests_updated_at
+BEFORE UPDATE ON diagnostic_requests
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<title>Diagnostics clients | RECTOY-AIRES</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.adm{max-width:1100px;margin:0 auto;padding:30px 20px}
+.adm-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.pipe{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+.pipe button{border:1px solid #dce3eb;background:#fff;border-radius:12px;padding:12px;text-align:left;cursor:pointer;font:inherit;transition:border-color .2s,transform .2s,box-shadow .2s}
+.pipe button:hover{transform:translateY(-2px);border-color:#00a8ff}
+.pipe button.on{border-color:#0077b6;box-shadow:0 0 0 2px rgba(0,168,255,.25)}
+.pipe small{display:block;color:#667085;font-size:.74rem}
+.pipe b{font-size:1.4rem;display:block}
+.pipe i{font-style:normal;font-size:.72rem;color:#0b6bcb}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.bar input{flex:1;min-width:200px;border:1px solid #dce3eb;border-radius:10px;padding:10px 12px;font:inherit}
+.alert{background:#fff4d6;border:1px solid #f1d58a;color:#7a5200;padding:10px 14px;border-radius:10px;margin-bottom:12px;font-weight:600}
+.lead{border:1px solid #e4e9ef;border-radius:14px;padding:16px;margin-bottom:12px;background:#fff}
+.lead.late{border-color:#f1b0a8}
+.lead-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.lead-head strong{font-size:1.02rem}
+.ref{color:#667085;font-size:.78rem}
+.score{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.74rem;font-weight:800}
+.s-hot{background:#fde1dc;color:#a4262c}.s-warm{background:#fdecc8;color:#8a5a00}.s-cold{background:#e6eef7;color:#385a7c}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;color:#52607a;font-size:.84rem;margin:8px 0}
+.needs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.needs span{background:#eaf5ff;color:#0b4f8a;border-radius:999px;padding:3px 10px;font-size:.76rem;font-weight:600}
+.msg{background:#f5f7fa;border-radius:10px;padding:11px 13px;white-space:pre-wrap;line-height:1.55;margin:8px 0}
+.edit{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:10px}
+.edit label{font-size:.74rem;font-weight:700;color:#263446;display:block;margin-bottom:3px}
+.edit input,.edit select{width:100%;border:1px solid #dce3eb;border-radius:9px;padding:8px 10px;font:inherit;background:#fff}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.acts a{color:#0b6bcb;font-weight:600;text-decoration:none;font-size:.86rem;margin-right:6px}
+.tl{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.tl div{border-left:3px solid #cfe6f7;padding:4px 10px;font-size:.84rem;white-space:pre-wrap}
+.tl .note{border-color:#f1d58a;background:#fffaf0}
+.tl small{color:#8995a4;display:block}
+.noteform{display:flex;gap:8px;margin-top:8px}
+.noteform input{flex:1;border:1px solid #dce3eb;border-radius:9px;padding:8px 10px;font:inherit}
+details summary{cursor:pointer;color:#0b6bcb;font-weight:700;font-size:.86rem;margin-top:10px}
+#notice{padding:30px;text-align:center}
+</style>
+</head>
+<body>
+<nav id="adminbar"></nav>
+<div class="adm">
+  <div class="adm-top">
+    <h1>📋 Diagnostics clients &amp; suivi commercial</h1>
+    <a class="secondary-btn" href="/api/admin/diagnostics-export.csv" style="text-decoration:none">⬇ Export CSV</a>
+  </div>
+  <div class="panel" id="notice" hidden>
+    <p>Vous devez d'abord vous connecter.</p><br>
+    <a class="primary-btn" href="index.html" style="text-decoration:none;display:inline-block">Se connecter</a>
+  </div>
+  <div id="app" hidden>
+    <div id="alert"></div>
+    <div class="pipe" id="pipe"></div>
+    <div class="bar"><input id="search" type="search" placeholder="Rechercher un nom, une entreprise, un email, une référence…" aria-label="Rechercher"><button class="secondary-btn" id="refresh" type="button">↻ Actualiser</button></div>
+    <div id="list"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="diagnostics-admin.js"></script>
+<script src="adminbar.js"></script>
+</body>
+</html>
